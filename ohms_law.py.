@@ -1,0 +1,122 @@
+
+# Project: Ohm's Law and Power Calculator
+# Author: Richard Victor
+# Department: ND1 Mechatronics Engineering
+# School: Yaba College of Technology
+
+# This list stores previous calculations
+history = []
+
+
+# Function to get a valid positive number
+def get_number(message):
+    while True:
+        try:
+            number = float(input(message))
+
+            if number <= 0:
+                print("Error: Please enter a number greater than zero.")
+            else:
+                return number
+
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+
+
+# Function to calculate voltage
+def calculate_voltage():
+    current = get_number("Enter Current (A): ")
+    resistance = get_number("Enter Resistance (Ohms): ")
+
+    voltage = current * resistance
+
+    print(f"Voltage = {voltage} Volts")
+    history.append(f"Voltage = {voltage} V")
+
+
+# Function to calculate current
+def calculate_current():
+    voltage = get_number("Enter Voltage (V): ")
+    resistance = get_number("Enter Resistance (Ohms): ")
+
+    current = voltage / resistance
+
+    print(f"Current = {current} Amps")
+    history.append(f"Current = {current} A")
+
+
+# Function to calculate resistance
+def calculate_resistance():
+    voltage = get_number("Enter Voltage (V): ")
+    current = get_number("Enter Current (A): ")
+
+    resistance = voltage / current
+
+    print(f"Resistance = {resistance} Ohms")
+    history.append(f"Resistance = {resistance} Ohms")
+
+
+# Function to calculate electrical power
+def calculate_power():
+    voltage = get_number("Enter Voltage (V): ")
+    current = get_number("Enter Current (A): ")
+
+    power = voltage * current
+
+    print(f"Power = {power} Watts")
+    history.append(f"Power = {power} W")
+
+
+# Function to display calculation history
+def show_history():
+    print("\n===== CALCULATION HISTORY =====")
+
+    if len(history) == 0:
+        print("No calculations have been made yet.")
+    else:
+        for item in history:
+            print(item)
+
+
+# Main program
+def main():
+
+    while True:
+        print("\n=================================")
+        print("   OHM'S LAW AND POWER CALCULATOR")
+        print("=================================")
+
+        print("1. Calculate Voltage")
+        print("2. Calculate Current")
+        print("3. Calculate Resistance")
+        print("4. Calculate Power")
+        print("5. View Calculation History")
+        print("6. Exit")
+
+        choice = input("\nChoose an option: ")
+
+        if choice == "1":
+            calculate_voltage()
+
+        elif choice == "2":
+            calculate_current()
+
+        elif choice == "3":
+            calculate_resistance()
+
+        elif choice == "4":
+            calculate_power()
+
+        elif choice == "5":
+            show_history()
+
+        elif choice == "6":
+            print("Thank you for using the calculator!")
+            break
+
+        else:
+            print("Invalid choice! Please select from 1 to 6.")
+
+
+# Start the program
+main()
